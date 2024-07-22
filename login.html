@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión</title>
+    <link href="css/login.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="contenedor">
+        <header>
+            <h1>Bienvenido</h1>
+        </header>
+        <form action="#" id="formulario-login">
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+            <button type="submit">Iniciar sesión</button>
+        </form>
+        <p class="otras"><a href="#">¿Olvidaste tu contraseña?</a></p>
+        <p class="otras"><a href="#">Registrarse</a></p>
+    </div>
+    <script>
+    $(document).ready(function() {
+    let intentosRestantes = 3;
+
+    $("#formulario-login").submit(function(e) {
+        e.preventDefault();
+
+        const correo = $("#correo").val();
+        const contrasena = $("#contrasena").val();
+
+        // Simulación de validación de inicio de sesión (reemplazar con tu lógica real)
+        if (correo === "brunocamirra@gmail.com" && contrasena === "12345678") {
+            // Inicio de sesión exitoso
+            window.location.href = "index.html"; // Cambiar por la URL de tu página principal
+        } else {
+            intentosRestantes--;
+            $("#intentos-restantes").text("Intentos restantes: " + intentosRestantes);
+
+            if (intentosRestantes === 0) {
+                alert("¡Demasiados intentos fallidos! Se ha bloqueado el inicio de sesión.");
+                $("#formulario-login").prop("disabled", true); // Deshabilitar el formulario
+            }
+        }
+    });
+})
+    </script>
+</body>
+</html>
